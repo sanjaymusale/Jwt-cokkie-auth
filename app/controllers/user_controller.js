@@ -53,7 +53,7 @@ router.post('/login', (req, res) => {
 		})
 		.then((response) => {
 			res.cookie(COOKIE_NAME, response, { httpOnly: true, maxAge: 3600000000 });
-			res.status(200).end();
+			res.status(200).json({ status: 'ok', msg: 'Login success' });
 		})
 		.catch((err) => {
 			res.send(err)
