@@ -38,9 +38,9 @@ function validateCookie(req, res, next) {
 				next();
 			})
 			.catch((err) => {
-				res.status(403).json({ msg: 'Not Authenticated' })
+				res.status(403).json({ msg: 'Not Authenticated', status: "Failed" })
 			})
-	} else res.status(403).json({ msg: 'Not Authenticated' })
+	} else res.status(403).json({ msg: 'Not Authenticated', status: "Failed" })
 }
 
 //	to login
@@ -74,6 +74,10 @@ router.get('/logout', validateCookie, (req, res) => {
 				res.status(403).json({ msg: 'Not Authenticated' })
 			})
 	}
+})
+
+router.get('/protect', validateCookie, (req, res) => {
+	return res.status(200).json({ msg: "Authorized", status: "success" })
 })
 
 module.exports = {
